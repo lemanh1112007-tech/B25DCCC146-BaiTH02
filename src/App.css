@@ -1,0 +1,612 @@
+/* reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #ffffff;
+  background-color: #0f172a;
+  min-height: 100vh;
+}
+
+/* bg đổi màu */
+.app-container {
+  min-height: 100vh;
+  transition: background 0.8s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+/* bg color */
+.app-container.theme-default {
+  background: linear-gradient(135deg, #0f172a 0%, #000000 100%);
+}
+.app-container.theme-city-hanoi {
+  background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+}
+.app-container.theme-city-haiphong {
+  background: linear-gradient(135deg, #0c4a6e 0%, #164e63 100%);
+}
+.app-container.theme-city-hue {
+  background: linear-gradient(135deg, #4c1d95 0%, #2e1065 100%);
+}
+.app-container.theme-city-danang {
+  background: linear-gradient(135deg, #0284c7 0%, #1e40af 100%);
+}
+.app-container.theme-city-nhatrang {
+  background: linear-gradient(135deg, #0f766e 0%, #047857 100%);
+}
+.app-container.theme-city-dalat {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+.app-container.theme-city-hcm {
+  background: linear-gradient(135deg, #9a3412 0%, #7f1d1d 100%);
+}
+.app-container.theme-city-cantho {
+  background: linear-gradient(135deg, #b45309 0%, #78350f 100%);
+}
+
+.app-backdrop {
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/*header*/
+.app-header {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto 24px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-logo {
+  font-size: 2.2rem;
+}
+
+.brand-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/*button c/f */
+.unit-toggle {
+  display: flex;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.unit-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.unit-btn.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* responsive */
+/* mobile */
+.app-main-layout {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+/* kích thước cho pc va tablet */
+@media (min-width: 768px) {
+  .app-main-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+
+.city-list-container {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.city-list-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.city-list-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* tìm kiếm */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 36px 10px 36px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.cities-wrapper {
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.cities-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cities-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.city-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.city-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.city-item:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+/* highlight city */
+.city-item.active {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.city-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 4px;
+  background: #38bdf8;
+  border-radius: 0 4px 4px 0;
+}
+
+.city-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.city-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.city-coords {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.fav-btn:hover {
+  transform: scale(1.2);
+}
+
+.fav-btn.favorited {
+  color: #fbbf24;
+}
+
+.empty-search {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* cột phải */
+.weather-display-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* thời tiết hiện tại */
+.weather-current-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.current-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.location-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.current-city-name {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.current-update-time {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 4px;
+}
+
+img.current-main-icon {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+  margin: 10px 0;
+}
+
+.current-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.temp-display {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.current-temp {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.current-condition-badge {
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* độ ẩm và gió */
+.current-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.metric-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metric-icon {
+  font-size: 1.8rem;
+}
+
+.metric-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.metric-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* dự báo 7 ngày */
+.weather-forecast-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+}
+
+.forecast-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+.forecast-day-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.forecast-day-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.forecast-day-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.forecast-date {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+img.forecast-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin: 12px 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.forecast-desc {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.85);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.forecast-temps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.temp-max {
+  font-weight: 700;
+  color: #fca5a5;
+}
+
+.temp-divider {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.temp-min {
+  font-weight: 600;
+  color: #93c5fd;
+}
+
+/* màn hình chờ/lỗi */
+.status-view {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 60px 24px;
+  backdrop-filter: blur(12px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+}
+
+.status-icon {
+  font-size: 3.5rem;
+}
+
+.status-view h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.status-view p {
+  max-width: 480px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* spinner */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* nút thử lại */
+.retry-btn {
+  margin-top: 8px;
+  padding: 10px 24px;
+  background: #ef4444;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.retry-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
